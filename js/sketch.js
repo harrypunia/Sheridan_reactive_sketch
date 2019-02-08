@@ -23,12 +23,11 @@ function setup() {
     }
     amp = new p5.Amplitude();
     video = createCapture(VIDEO);
-    video.size(window.innerWidth, window.innerHeight);
+    video.hide();
 }
 
 function draw() {
     vol = amp.getLevel();
-    background(col[0].r, col[0].g, col[0].b);
     if (init) {
         image(video, 0, 0);
     }
