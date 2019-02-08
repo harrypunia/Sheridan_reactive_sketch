@@ -9,7 +9,8 @@ let init = false,
     song,
     amp,
     vol,
-    video;
+    video,
+    poseNet;
 
 function preload() {
     song = loadSound('assets/song.mp3');
@@ -24,6 +25,8 @@ function setup() {
     amp = new p5.Amplitude();
     video = createCapture(VIDEO);
     video.hide();
+    poseNet = ml5.poseNet(video, modelReady);
+    poseNet.on('pose', gotPoses);
 }
 
 function draw() {
@@ -40,7 +43,11 @@ function windowResized() {
 
 const initSketch = () => {
     init = true;
-    song.play();
+    //song.play();
     let btn = document.getElementById('play');
     btn.style.display = 'none';
 }
+
+const gotPoses = poses => console.log(poses);
+
+const modelReady = () => console.log('model ready');
