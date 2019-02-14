@@ -7,6 +7,6 @@ class Pose {
         this.pose.on('pose', this.getPoses);
     }
     getPoses(poses) {
-        this.points = poses.slice();
+        points = poses;
     }
 }
