@@ -1,14 +1,11 @@
 class SParticleSystem {
     constructor() {
-        this.sParticles = [];
-        for (let i = 0; i < 5; i++) {
-            const xOffset = map(i, 0, 4, width / 2 - 50, width / 2 + 50);
-            this.sParticles[i] = new SParticle(xOffset, 20);
+        this.leftParticles = [];
+        for(let i = 0; i < 20; i++) {
+            this.leftParticles[i] = new SParticle();
         }
     }
     show() {
-        for (let i = 0; i < this.sParticles.length; i++) {
-            this.sParticles[i].show();
-        }
+        
     }
 }

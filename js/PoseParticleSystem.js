@@ -1,6 +1,5 @@
 class PoseParticleSystem {
-    constructor(points) {
-        this.points = points;
+    constructor() {
         this.poseParticles = [];
         for (let i = 0; i < 6; i++) {
             this.poseParticles[i] = new PoseParticle(width / 2, height / 2);

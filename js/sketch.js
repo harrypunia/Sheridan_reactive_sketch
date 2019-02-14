@@ -20,6 +20,7 @@ function draw() {
     mp3.updateVol();
     if (init) {
         particleSystem.show();
+        console.log(frameRate());
     }
 }
 
@@ -39,5 +40,5 @@ const declareObjects = () => {
     video.size(width, height);
     pose = new Pose(video);
     pose.fetchPoints();
-    particleSystem = new ParticleSystem(points);
+    particleSystem = new ParticleSystem();
 }
