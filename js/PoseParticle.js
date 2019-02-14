@@ -4,9 +4,9 @@ class PoseParticle {
         this.y = y;
         this.children = [];
         this.childrenAngle = 0;
-        for(let i = 0; i < 10; i++) {
-            this.children[i] = new ParticleChildren(i, 10);
-        }
+//        for(let i = 0; i < 10; i++) {
+//            this.children[i] = new PoseParticleChildren(i, 10);
+//        }
     }
     show(pos, z){
         this.update();
@@ -27,20 +27,19 @@ class PoseParticle {
         this.y = newY;
         return {x: newX,y: newY}
     }
-    drawChilden(x, y) {
-        for(let i = 0; i < this.children.length; i++) {
-            this.children[i].updatePos(x, y, this.childrenAngle);
-            this.children[i].show();
-        }
-    }
+//    drawChilden(x, y) {
+//        for(let i = 0; i < this.children.length; i++) {
+//            this.children[i].updatePos(x, y, this.childrenAngle);
+//            this.children[i].show();
+//        }
+//    }
     connectTo(other) {
         noFill();
         stroke(50);
         line(this.x, this.y, other.x, other.y);
     }
 }
-
-class ParticleChildren {
+class PoseParticleChildren {
     constructor(relIndex, siblingLength) {
         this.relIndex = relIndex;
         this.siblingLength = siblingLength;
