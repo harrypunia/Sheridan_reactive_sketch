@@ -4,6 +4,7 @@ let pose;
 let song;
 let mp3;
 let points;
+let particleSystem;
 
 function preload() {
     song = loadSound('assets/song.mp3');
@@ -18,11 +19,7 @@ function draw() {
     background(0);
     mp3.updateVol();
     if (init) {
-        const newX = posePos(0, 'x');
-        const newY = posePos(0, 'y');
-        const x = lerp(x, newX, .5);
-        const y = lerp(y, newX, .5);
-        ellipse(x, y, 20, 20);
+        particleSystem.show();
     }
 }
 
@@ -35,15 +32,12 @@ const initSketch = () => {
     init = true;
     song.play();
     document.getElementById('play').style.display = 'none';
+    declareObjects();
+}
+const declareObjects = () => {
     video = createCapture(VIDEO);
     video.size(width, height);
     pose = new Pose(video);
     pose.fetchPoints();
-}
-const posePos = (at, which) => {
-    if (points != undefined && points.length > 0) {
-        return which == 'x' ? width - points[at].pose.keypoints[at].position.x : points[at].pose.keypoints[at].position.y;
-    } else {
-        return false
-    }
+    particleSystem = new ParticleSystem(points);
 }
