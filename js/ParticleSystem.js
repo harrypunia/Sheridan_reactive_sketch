@@ -5,9 +5,8 @@ class ParticleSystem {
         this.particles[0] = new Particle(width/2, height/2);
     }
     show() {
-        this.particles[0].show();
-        const force = createVector(this.getPointPos(0, 'x'), this.getPointPos(0, 'y'))
-        this.particles[0].applyForce(force);
+        const pos = createVector(this.getPointPos(0, 'x'), this.getPointPos(0, 'y'))
+        this.particles[0].show(pos);
     }
     getPointPos (at, which) {
         if (points != undefined && points.length > 0) {
