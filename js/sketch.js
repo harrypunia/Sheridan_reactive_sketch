@@ -1,9 +1,8 @@
 let init = false;
-let amp = 0.0;
-let vol = 0.0;
-let particles = [];
 let video;
-let song = null;
+let pose;
+let song;
+let mp3;
 
 function preload() {
     song = loadSound('assets/song.mp3');
@@ -11,19 +10,17 @@ function preload() {
 
 function setup() {
     createCanvas(window.innerWidth, window.innerHeight);
-    if (song.isLoaded()) {
-        let btn = document.getElementById('play');
-        btn.classList.add('in');
-    }
-    amp = new p5.Amplitude();
-    video = new Video();
-    video.fetchPose();
+    loadAssets();
+    video = createCapture(VIDEO);
+    pose = new Pose(video);
+    pose.fetchPoints();
 }
 
 function draw() {
-    vol = amp.getLevel();
+    mp3.updateVol();
     if (init) {
         image(video, 0, 0);
+        console.log(pose.points);
     }
 }
 
@@ -31,9 +28,10 @@ function windowResized() {
     resizeCanvas(window.innerWidth, window.innerHeight);
 }
 
+const loadAssets = () => song.isLoaded() ? (document.getElementById('play').classList.add('in'), mp3 = new MP3(song)) : 0;
+
 const initSketch = () => {
     init = true;
-    //song.play();
-    let btn = document.getElementById('play');
-    btn.style.display = 'none';
+    song.play();
+    document.getElementById('play').style.display = 'none';
 }
