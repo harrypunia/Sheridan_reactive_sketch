@@ -1,12 +1,14 @@
-class Detect {
-    constructor(video) {
+class Video {
+    constructor() {
         this.points;
-        this.pose = ml5.poseNet(video);
+        this.video = createCapture(VIDEO);
+        this.pose = ml5.poseNet(this.video);
     }
-    fetchPose () {
+    fetchPose() {
+        this.video.hide();
         this.pose.on('pose', this.gotPoses);
     }
-    gotPoses (poses) {
+    gotPoses(poses) {
         this.points = poses;
     }
 }
