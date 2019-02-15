@@ -17,8 +17,8 @@ class PoseParticle {
         fill(255);
     }
     move(pos) {
-        const newX = lerp(pos.x, this.x, .5);
-        const newY = lerp(pos.y, this.y, .5);
+        const newX = lerp(pos.x, this.x, .2);
+        const newY = lerp(pos.y, this.y, .2);
         this.x = newX;
         this.y = newY;
         return {x: newX,y: newY}
