@@ -11,17 +11,15 @@ class Sketch {
         capture = createCapture(VIDEO);
         ml5.poseNet(capture, poseLoaded).on('pose', (poses) => points = poses);
         this.particleSystem = new ParticleSystem(points);
-        this.smoothVol = 0;
-        this.rot = {x: 0, y: 0};
+        this.rot = {y: 0, z: 0};
     }
     init() {
         mp3.updateVol();
         push();
         if (points != undefined && points.length > 0) {
             this.getCnvRot();
-            this.smoothVol = lerp(this.smoothVol, mp3.vol, .2);
-            translate(-width / 4 - (this.smoothVol * width / 20), -height / 4 - (this.smoothVol * height / 20));
-            scale(.5 + this.smoothVol / 10);
+            translate(-width / 4 - (mp3.smoothVol * width / 20), -height / 4 - (mp3.smoothVol * height / 20));
+            scale(.5 + mp3.smoothVol / 10);
             noFill();
             stroke(255);
             rect(5, 5, width - 10, height - 10);

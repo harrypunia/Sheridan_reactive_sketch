@@ -3,10 +3,10 @@ class MP3 {
         this.song = song;
         this.amp = new p5.Amplitude();
         this.vol;
-        this.smoothVol;
+        this.smoothVol = 0;
     }
     updateVol() {
         this.vol = this.amp.getLevel();
-        this.smoothVol = lerp(this.smoothVol, this.vol, 0.05);
+        this.smoothVol = lerp(this.smoothVol, this.vol, 0.1);
     }
 }
