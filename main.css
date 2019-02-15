@@ -8,7 +8,7 @@ html {
     background: black;
 }
 
-.intro-command {
+.intro {
     position: absolute;
     left: 50vw;
     top: 50vh;
@@ -17,11 +17,19 @@ html {
     font-size: 54px;
     text-align: center;
     font-family: 'cinzel-decorative';
+    opacity: 0;
+}
+
+.in {
     animation: fade-in 2s cubic-bezier(.91, .01, 1, 1);
+    animation-fill-mode: forwards
 }
 
 @keyframes fade-in {
     from {
         opacity: 0;
+    }
+    to {
+        opacity: 1;
     }
 }
