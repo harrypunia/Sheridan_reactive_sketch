@@ -5,7 +5,7 @@ let song;
 let mp3;
 let points;
 let particleSystem;
-let canvasRotation = 0;
+let canvasRotationY = 0;
 
 function preload() {
     song = loadSound('assets/song.mp3');
@@ -23,10 +23,9 @@ function draw() {
         push();
         if (points != undefined && points.length > 0) {
             getCanvasRotation();
-            rotateY(canvasRotation);
-            rotateX(canvasRotation);
-            translate(-width/4, -height/4);
-            scale(.5);
+            rotateY(canvasRotationY);
+            translate(-width / 4 - (mp3.vol * width / 2), -height / 4 - (mp3.vol * height / 2));
+            scale(.5 + mp3.vol);
             noFill();
             stroke(255);
             rect(5, 5, width - 10, height - 10);
@@ -60,7 +59,7 @@ const getCanvasRotation = () => {
     let left;
     let r;
     distLeft < distRight ? (r = distLeft, left = true) : (r = distRight, left = false);
-    left ? canvasRotation = map(r, 0, maxDist, -.2, 0) : canvasRotation = map(r, 0, maxDist, .2, 0);
+    left ? canvasRotationY = map(r, 0, maxDist, -.2, 0) : canvasRotationY = map(r, 0, maxDist, .2, 0);
 }
 const posePos = (at, which) => {
     return which == 'x' ? width - points[0].pose.keypoints[at].position.x : points[0].pose.keypoints[at].position.y;
