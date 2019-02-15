@@ -2,7 +2,7 @@ let points;
 let mp3;
 let capture;
 let particleSystem;
-let blink;
+let blink = 0;
 let handX = 0;
 let handY = 0;
 
@@ -12,7 +12,7 @@ class Sketch {
         ml5.poseNet(capture, poseLoaded).on('pose', (poses) => points = poses);
         this.particleSystem = new ParticleSystem(points);
         this.smoothVol = 0;
-        blink = random(10);
+        this.rot = {x: 0, y: 0};
     }
     init() {
         mp3.updateVol();
@@ -39,22 +39,29 @@ class Sketch {
             handY = lerp(handY, posePos(10).y, .1);
             ellipse(handX, handY, 20, 20);
             let op;
-            (Math.abs(handY - height / 2) < 50) && (Math.abs(handX - width / 2) < 150) ? op = 1: op = noise(blink);
+            const inRange = (Math.abs(handY - height / 2) < 50 && Math.abs(handX - width / 2)) < 150;
+            inRange ? op = 1 : op = map(noise(blink), 0, 1, .5, 1);
             intro.getElementsByTagName('p')[0].style.opacity = op;
             blink += 0.01;
         }
         pop();
     }
     getCnvRot() {
-        let rot = {};
-        const noseToLeftEar = pointGap(0, 3);
-        const noseToRightEar = pointGap(0, 4);
+        this.getRotY();
+        this.getRotZ();
+        rotateY(this.rot.y);
+        rotateZ(this.rot.z);
+    }
+    getRotY() {
         const maxDist = pointGap(4, 3) / 2;
-        noseToLeftEar < noseToRightEar ? rot.y = map(noseToLeftEar, 0, maxDist, -.2, 0) : rot.y = map(noseToRightEar, 0, maxDist, .2, 0);
-        rotateY(rot.y);
+        let invert = 1;
+        let chosenSide = 0.0;
+        pointGap(0, 3) < pointGap(0, 4) ? chosenSide = pointGap(0, 3) : (chosenSide = pointGap(0, 4), invert = -1);
+        this.rot.y = lerp(this.rot.y, map(chosenSide, 0, maxDist, invert * .2, 0), 0.05);
+    }
+    getRotZ() {
         const zAngle = posePos(3).y - posePos(4).y;
         const earDist = pointGap(0, 4);
-        rot.z = map(zAngle, -earDist, earDist, .1, -.1);
-        rotateZ(rot.z);
+        this.rot.z = lerp(this.rot.z, map(zAngle, -earDist, earDist, .1, -.1), 0.05);
     }
 }

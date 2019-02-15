@@ -15,16 +15,17 @@ class PoseParticleSystem {
                 const z = pointGap(1, 2);
                 this.poseParticles[i].show(pos, z);
             }
-            this.drawLipParticle({x1: posePos(1).x, y1: posePos(1).y, x2: posePos(2).x, y2:posePos(2).y});
+            const ears = {x1: posePos(1).x, y1: posePos(1).y, x2: posePos(2).x, y2:posePos(2).y}
+            this.drawLip(ears);
         }
     }
-    drawLipParticle(ears) {
+    drawLip(ears) {
         const{x1, y1, x2, y2} = ears;
         const gap = dist(x1, y1, x2, y2);
         const pos = {x: (x1 + x2) / 2 + (y1 - y2), y: (y1 + y2) / 2 + gap};
         this.poseParticles[5].show(pos, gap);
-        for (let j = 0; j < this.poseParticles.length - 1; j++) {
-            this.poseParticles[5].connectTo(this.poseParticles[j]);
+        for (let i = 0; i < this.poseParticles.length - 1; i++) {
+            this.poseParticles[5].connectTo(this.poseParticles[i]);
         }
     }
 }
