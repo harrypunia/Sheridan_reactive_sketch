@@ -1,66 +1,38 @@
-let init = false;
-let video;
-let pose;
-let song;
-let mp3;
-let points;
-let particleSystem;
-let canvasRotationY = 0;
-
-function preload() {
-    song = loadSound('assets/song.mp3');
-}
-
-function setup() {
-    createCanvas(window.innerWidth, window.innerHeight, WEBGL);
-    loadAssets();
-}
-
-function draw() {
-    background(0);
-    mp3.updateVol();
-    if (init) {
+class Sketch {
+    constructor() {
+        this.fetchVideo();
+        this.createPose();
+        this.particleSystem = new ParticleSystem(points);
+    }
+    init() {
         push();
         if (points != undefined && points.length > 0) {
-            getCanvasRotation();
+            this.getCanvasRotation();
             rotateY(canvasRotationY);
-            translate(-width / 4 - (mp3.vol * width / 2), -height / 4 - (mp3.vol * height / 2));
-            scale(.5 + mp3.vol);
+            translate(-width / 4 - (mp3.vol * width / 20), -height / 4 - (mp3.vol * height / 20));
+            scale(.5 + mp3.vol / 10);
             noFill();
             stroke(255);
             rect(5, 5, width - 10, height - 10);
         }
-        particleSystem.show();
+        this.particleSystem.show();
         push();
     }
-}
-
-function windowResized() {
-    resizeCanvas(window.innerWidth, window.innerHeight);
-}
-const loadAssets = () => song.isLoaded() ? (document.getElementById('play').classList.add('in'), mp3 = new MP3(song)) : 0;
-const initSketch = () => {
-    init = true;
-    song.play();
-    document.getElementById('play').style.display = 'none';
-    declareObjects();
-}
-const declareObjects = () => {
-    video = createCapture(VIDEO);
-    video.size(width, height);
-    pose = new Pose(video);
-    pose.fetchPoints();
-    particleSystem = new ParticleSystem();
-}
-const getCanvasRotation = () => {
-    const distLeft = dist(posePos(0, 'x'), posePos(0, 'y'), posePos(3, 'x'), posePos(3, 'y'));
-    const distRight = dist(posePos(0, 'x'), posePos(0, 'y'), posePos(4, 'x'), posePos(4, 'y'));
-    const maxDist = dist(posePos(4, 'x'), posePos(4, 'y'), posePos(3, 'x'), posePos(3, 'y')) / 2;
-    let left;
-    let r;
-    distLeft < distRight ? (r = distLeft, left = true) : (r = distRight, left = false);
-    left ? canvasRotationY = map(r, 0, maxDist, -.2, 0) : canvasRotationY = map(r, 0, maxDist, .2, 0);
-}
-const posePos = (at, which) => {
-    return which == 'x' ? width - points[0].pose.keypoints[at].position.x : points[0].pose.keypoints[at].position.y;
+    fetchVideo() {
+        video = createCapture(VIDEO);
+        video.size(width, height);
+    }
+    createPose() {
+        pose = new Pose(video);
+        //pose.fetchPoints();
+    }
+    getCanvasRotation() {
+        const distLeft = dist(this.posePos(0, 'x'), this.posePos(0, 'y'), this.posePos(3, 'x'), this.posePos(3, 'y'));
+        const distRight = dist(this.posePos(0, 'x'), this.posePos(0, 'y'), this.posePos(4, 'x'), this.posePos(4, 'y'));
+        const maxDist = dist(this.posePos(4, 'x'), this.posePos(4, 'y'), this.posePos(3, 'x'), this.posePos(3, 'y')) / 2;
+        distLeft < distRight ? canvasRotationY = map(distLeft, 0, maxDist, -.2, 0) : canvasRotationY = map(distRight, 0, maxDist, .2, 0);
+    }
+    posePos(at, which) {
+            return which == 'x' ? width - points[0].pose.keypoints[at].position.x : points[0].pose.keypoints[at].position.y;
+    }
 }
