@@ -1,7 +1,12 @@
+let points;
+let mp3;
+let video;
+let particleSystem;
+
 class Sketch {
     constructor() {
         this.fetchVideo();
-        ml5.poseNet(video).on('pose', (poses) => points = poses);
+        ml5.poseNet(video, poseLoaded).on('pose', (poses) => points = poses);
         this.particleSystem = new ParticleSystem(points);
         this.smoothVol = 0;
     }
@@ -19,7 +24,9 @@ class Sketch {
         this.particleSystem.show();
         push();
     }
-    navigate() {}
+    navigate() {
+        mp3 = new MP3(songs[0]);
+    }
     fetchVideo() {
         video = createCapture(VIDEO);
         video.size(width, height);

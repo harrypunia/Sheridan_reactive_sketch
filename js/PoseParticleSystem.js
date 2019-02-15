@@ -11,11 +11,11 @@ class PoseParticleSystem {
                 for (let j = 0; j < this.poseParticles.length - 1; j++) {
                     this.poseParticles[i].connectTo(this.poseParticles[j]);
                 }
-                const pos = createVector(this.getPointPos(i, 'x'), this.getPointPos(i, 'y'))
-                const z = dist(this.getPointPos(1, 'x'), this.getPointPos(1, 'y'), this.getPointPos(2, 'x'), this.getPointPos(2, 'y'));
+                const pos = createVector(posePos(i, 'x'), posePos(i, 'y'))
+                const z = dist(posePos(1, 'x'), posePos(1, 'y'), posePos(2, 'x'), posePos(2, 'y'));
                 this.poseParticles[i].show(pos, z);
             }
-            this.drawLipParticle(this.getPointPos(1, 'x'), this.getPointPos(1, 'y'), this.getPointPos(2, 'x'), this.getPointPos(2, 'y'));
+            this.drawLipParticle(posePos(1, 'x'), posePos(1, 'y'), posePos(2, 'x'), posePos(2, 'y'));
         }
     }
     drawLipParticle(x1, y1, x2, y2) {
@@ -25,8 +25,5 @@ class PoseParticleSystem {
         for (let j = 0; j < this.poseParticles.length - 1; j++) {
             this.poseParticles[5].connectTo(this.poseParticles[j]);
         }
-    }
-    getPointPos(at, which) {
-        return which == 'x' ? width - points[0].pose.keypoints[at].position.x : points[0].pose.keypoints[at].position.y;
     }
 }

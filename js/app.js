@@ -1,12 +1,7 @@
 let init = false;
-let video;
-let pose;
 let songs = [];
-let mp3;
-let points;
-let particleSystem;
-let canvasRotationY;
 let sketch;
+let ml5Loaded = false;
 const intro = document.getElementsByClassName('intro')[0];
 
 function preload() {
@@ -17,31 +12,24 @@ function preload() {
 
 function setup() {
     createCanvas(window.innerWidth, window.innerHeight, WEBGL);
-    if(songs.every((song) => song.isLoaded())) {
-        sketch = new Sketch(songs[2]);
-        console.log('loading successful');
-    } else  {
-        console.log('song failed to load')
-    }
+    songs.every((song) => song.isLoaded()) ? (sketch = new Sketch(), console.log('loading successful')) : console.log('unable to load songs');
 }
 
 function draw() {
     background(0);
-    sketch.navigate();
     if (init) {
         mp3.updateVol();
         sketch.init();
+    } else {
+        sketch.navigate();
     }
 }
 
 function windowResized() {
     resizeCanvas(window.innerWidth, window.innerHeight);
 }
+
 const initSketch = () => {
     init = true;
-    song.play();
-}
-
-const checkSelection = () => {
-    mp3 = new MP3(songs[2]);
+    songs[0].play();
 }
