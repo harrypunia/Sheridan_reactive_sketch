@@ -32,6 +32,7 @@ const initSketch = () => {
     init = true;
     songs[0].play();
     mp3 = new MP3(songs[0]);
+    intro.style.display = 'none';
 }
 
 const displayLoading = () => {
