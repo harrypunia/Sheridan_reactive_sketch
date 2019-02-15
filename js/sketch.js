@@ -2,6 +2,7 @@ let points;
 let mp3;
 let video;
 let particleSystem;
+let blink;
 
 class Sketch {
     constructor() {
@@ -9,8 +10,10 @@ class Sketch {
         ml5.poseNet(video, poseLoaded).on('pose', (poses) => points = poses);
         this.particleSystem = new ParticleSystem(points);
         this.smoothVol = 0;
+        blink = random(10);
     }
     init() {
+        mp3.updateVol();
         push();
         if (points != undefined && points.length > 0) {
             this.getCnvRot();
@@ -25,7 +28,8 @@ class Sketch {
         push();
     }
     navigate() {
-        mp3 = new MP3(songs[0]);
+        intro.getElementsByTagName('p')[0].style.opacity = noise(blink);
+        blink += 0.01;
     }
     fetchVideo() {
         video = createCapture(VIDEO);
@@ -38,7 +42,7 @@ class Sketch {
         const maxDist = pointGap(4, 3) / 2;
         noseToLeftEar < noseToRightEar ? rot.y = map(noseToLeftEar, 0, maxDist, -.2, 0) : rot.y = map(noseToRightEar, 0, maxDist, .2, 0);
         rotateY(rot.y);
-        const zAngle = posePos(3, 'y') - posePos(4, 'y');
+        const zAngle = posePos(3).y - posePos(4).y;
         const earDist = pointGap(0, 4);
         rot.z = map(zAngle, -earDist, earDist, .1, -.1);
         rotateZ(rot.z);

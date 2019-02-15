@@ -2,7 +2,7 @@ let init = false;
 let songs = [];
 let sketch;
 let ml5Loaded = false;
-const intro = document.getElementsByClassName('intro')[0];
+let songsLoaded;
 
 function preload() {
     for (let i = 0; i < 3; i++) {
@@ -17,11 +17,10 @@ function setup() {
 
 function draw() {
     background(0);
-    if (init) {
-        mp3.updateVol();
-        sketch.init();
+    if (ml5Loaded) {
+        init ? sketch.init() : sketch.navigate();
     } else {
-        sketch.navigate();
+        displayLoading();
     }
 }
 
@@ -32,4 +31,13 @@ function windowResized() {
 const initSketch = () => {
     init = true;
     songs[0].play();
+    mp3 = new MP3(songs[0]);
+}
+
+const displayLoading = () => {
+    if (songsLoaded != true) {
+        let manyLoaded = songs.filter(each => each.isLoaded()).length;
+        loading.style.width = manyLoaded / songs.length * 75 + 'vw';
+        manyLoaded >= songs.length ? (songsLoaded = true, console.log('songs have been loaded')) : 0;
+    }
 }
