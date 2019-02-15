@@ -8,7 +8,7 @@ let handY = 0;
 
 class Sketch {
     constructor() {
-        this.fetchVideo();
+        capture = createCapture(VIDEO);
         ml5.poseNet(capture, poseLoaded).on('pose', (poses) => points = poses);
         this.particleSystem = new ParticleSystem(points);
         this.smoothVol = 0;
@@ -44,10 +44,6 @@ class Sketch {
             blink += 0.01;
         }
         pop();
-    }
-    fetchVideo() {
-        capture = createCapture(VIDEO);
-        capture.size(width, height);
     }
     getCnvRot() {
         let rot = {};
