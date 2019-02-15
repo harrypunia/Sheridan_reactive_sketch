@@ -1,13 +1,15 @@
 let points;
 let mp3;
-let video;
+let capture;
 let particleSystem;
 let blink;
+let handX = 0;
+let handY = 0;
 
 class Sketch {
     constructor() {
         this.fetchVideo();
-        ml5.poseNet(video, poseLoaded).on('pose', (poses) => points = poses);
+        ml5.poseNet(capture, poseLoaded).on('pose', (poses) => points = poses);
         this.particleSystem = new ParticleSystem(points);
         this.smoothVol = 0;
         blink = random(10);
@@ -28,12 +30,24 @@ class Sketch {
         push();
     }
     navigate() {
-        intro.getElementsByTagName('p')[0].style.opacity = noise(blink);
-        blink += 0.01;
+        noFill();
+        stroke(255);
+        push();
+        translate(-width / 2, -height / 2);
+        if (points != undefined && points.length > 0) {
+            handX = lerp(handX, posePos(10).x, .1);
+            handY = lerp(handY, posePos(10).y, .1);
+            ellipse(handX, handY, 20, 20);
+            let op;
+            (Math.abs(handY - height / 2) < 50) && (Math.abs(handX - width / 2) < 150) ? op = 1: op = noise(blink);
+            intro.getElementsByTagName('p')[0].style.opacity = op;
+            blink += 0.01;
+        }
+        pop();
     }
     fetchVideo() {
-        video = createCapture(VIDEO);
-        video.size(width, height);
+        capture = createCapture(VIDEO);
+        capture.size(width, height);
     }
     getCnvRot() {
         let rot = {};
