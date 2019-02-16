@@ -2,7 +2,7 @@ class NetworkSystem {
     constructor() {
         this.points = [];
         this.link = false;
-        for (let i = 0; i < 100; i++) {
+        for (let i = 0; i < 80; i++) {
             this.points[i] = new Point(random(10), random(10));
         }
     }
@@ -38,15 +38,15 @@ class Point {
         this.y = map(noise(this.yOff), 0, 1, -height * 2, height * 2);
         noStroke();
         fill(255);
-        ellipse(this.x, this.y, 10 + mp3.smoothVol, 10 + mp3.smoothVol);
+        ellipse(this.x, this.y, 1 + mp3.smoothVol, 1 + mp3.smoothVol);
         this.xOff += mp3.smoothVol / 500;
         this.yOff += mp3.smoothVol / 500;
     }
     connectTo(other, blink) {
-        if (Math.abs(dist(this.x, this.y, other.x, other.y)) < 200) {
+        if (Math.abs(dist(this.x, this.y, other.x, other.y)) < 250) {
             noFill();
             if (blink) {
-                this.op = lerp(this.op, 50, 0.5);
+                this.op = lerp(this.op, 20, 0.5);
             } else {
                 this.op = lerp(this.op, 2, 0.01);
             }
