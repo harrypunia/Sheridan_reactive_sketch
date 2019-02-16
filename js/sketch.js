@@ -8,6 +8,7 @@ let handY = 0;
 class Sketch {
     constructor() {
         capture = createCapture(VIDEO);
+        capture.size(capture.width * 2, capture.height * 2);
         ml5.poseNet(capture, poseLoaded).on('pose', (poses) => points = poses);
         this.particleSystem = new ParticleSystem(points);
         this.rot = {
@@ -30,36 +31,30 @@ class Sketch {
         this.particleSystem.show();
         push();
     }
-    navigate() {
+    menu() {
         noFill();
         stroke(255);
         push();
-        translate(-width / 4, -height / 4);
-        scale(.5);
+        translate(-width / 2, -height / 2);
         if (points != undefined && points.length > 0) {
-            navigator.navigate();
-            ellipse(handX, handY, this.navigator.size, this.navigator.size);
-            if (navigator.isOn(introText)) {
-
-            }
-            //let op;
-            //            const inRange = (Math.abs(handY - height / 2) < 100 && Math.abs(handX - width / 2)) < 150;
-            //            if (!inRange) {
-            //                op = 1;
-            //                introText.innerHTML = 'Hold to play'
-            //                this.navigator.counter++;
-            //                this.navigator.size = lerp(this.navigator.size, 60, .01);
-            //                this.navigator.counter >= 100 ? initSketch() : 0;
-            //            } else {
-            //                this.navigator.size = lerp(this.navigator.size, 20, .2);
-            //                introText.innerHTML = 'Raise your hand'
-            //                op = map(noise(blink), 0, 1, .5, 1);
-            //                this.navigator.counter = 0;
-            //            }
-            introText.style.opacity = op;
-            blink += 0.01;
+            this.navigator.navigate();
+            this.navigationVisuals();
         }
         pop();
+    }
+    navigationVisuals() {
+        if (this.navigator.isOn(intro)) {
+            introText.innerHTML = 'Hold to play song';
+            introText.style.transform = 'scale(1.0' + this.navigator.counter.main + ')'
+            this.navigator.highlight();
+            this.navigator.counter.main++;
+            this.navigator.counter.main >= 60 ? initSketch() : 0;
+        } else {
+            introText.style.transform = 'scale(1.0)';
+            introText.innerHTML = 'Raise your hand';
+            this.navigator.counter.main = 0;
+            this.navigator.reset();
+        }
     }
     getCnvRot() {
         this.getRotY();

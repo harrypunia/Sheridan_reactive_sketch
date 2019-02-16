@@ -18,7 +18,7 @@ function setup() {
 function draw() {
     background(0);
     if (ml5Loaded) {
-        init ? sketch.init() : sketch.navigate();
+        init ? sketch.init() : sketch.menu();
     } else {
         displayLoading();
     }
