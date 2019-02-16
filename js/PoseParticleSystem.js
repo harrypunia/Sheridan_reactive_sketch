@@ -7,6 +7,7 @@ class PoseParticleSystem {
     }
     draw() {
         if (points != undefined && points.length > 0) {
+            this.connectCorners();
             for (let i = 0; i < this.poseParticles.length - 1; i++) {
                 for (let j = 0; j < this.poseParticles.length - 1; j++) {
                     this.poseParticles[i].connectTo(this.poseParticles[j]);
@@ -27,5 +28,22 @@ class PoseParticleSystem {
         for (let i = 0; i < this.poseParticles.length - 1; i++) {
             this.poseParticles[5].connectTo(this.poseParticles[i]);
         }
+    }
+    connectCorners() {
+        noFill();
+        stroke(20);
+        this.drawLine(0, 0, 1);
+        this.drawLine(width, 0, 1);
+        this.drawLine(0, 0, 2);
+        this.drawLine(width, 0, 2);
+        this.drawLine(0, 0, 3);
+        this.drawLine(0, height, 3);
+        this.drawLine(width, 0, 4);
+        this.drawLine(width, height, 4);
+        this.drawLine(0, height, 5);
+        this.drawLine(width, height, 5);
+    }
+    drawLine(x, y, i) {
+        line(x, y, this.poseParticles[i].x, this.poseParticles[i].y);
     }
 }

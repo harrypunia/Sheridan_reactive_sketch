@@ -8,7 +8,7 @@ let handY = 0;
 class Sketch {
     constructor() {
         capture = createCapture(VIDEO);
-        capture.size(capture.width * 2, capture.height * 2);
+        capture.size(capture.width * 4, capture.height * 4);
         ml5.poseNet(capture, poseLoaded).on('pose', (poses) => points = poses);
         this.particleSystem = new ParticleSystem(points);
         this.rot = {
@@ -18,6 +18,7 @@ class Sketch {
         this.navigator = new Navigator();
     }
     init() {
+        this.displayPerformance();
         mp3.updateVol();
         push();
         if (points != undefined && points.length > 0) {
@@ -56,6 +57,13 @@ class Sketch {
             this.navigator.reset();
         }
     }
+    displayPerformance() {
+        if(frameRate() < 30) {
+            performance.style.background = 'red';
+        } else {
+            performance.style.background = 'black';
+        }
+    }
     getCnvRot() {
         this.getRotY();
         this.getRotZ();
@@ -72,6 +80,6 @@ class Sketch {
     getRotZ() {
         const zAngle = posePos(3).y - posePos(4).y;
         const earDist = pointGap(0, 4);
-        this.rot.z = lerp(this.rot.z, map(zAngle, -earDist, earDist, .1, -.1), 0.05);
+        this.rot.z = lerp(this.rot.z, map(zAngle, -earDist, earDist, .2, -.2), 0.05);
     }
 }
