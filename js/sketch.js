@@ -22,11 +22,11 @@ class Sketch {
         push();
         if (points != undefined && points.length > 0) {
             this.getCnvRot();
-            translate(-width / 4 - (mp3.smoothVol * width / 20), -height / 4 - (mp3.smoothVol * height / 20));
-            scale(.5 + mp3.smoothVol / 10);
+            translate(-width / 4 - (mp3.smoothVol * width / 20), -height / 4 - (mp3.smoothVol * height / 20), 1);
+            scale(.5 + mp3.smoothVol / 10, .5 + mp3.smoothVol / 10, 1);
             noFill();
             stroke(255);
-            rect(5, 5, width - 10, height - 10);
+            rect(0, 0, width, height);
         }
         this.particleSystem.show();
         push();

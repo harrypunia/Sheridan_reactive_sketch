@@ -2,13 +2,19 @@ class Navigator {
     constructor() {
         this.pos = {x: width, y: height};
         this.size = 20;
+        this.mouseControl = false
         this.counter = {
             main: 0
         }
     }
     navigate() {
-        this.pos.x = lerp(this.pos.x, posePos(10).x, .02);
-        this.pos.y = lerp(this.pos.y, posePos(10).y, .02);
+        if(mouseIsPressed) {
+            this.pos.x = mouseX;
+            this.pos.y = mouseY;
+        } else {
+            this.pos.x = lerp(this.pos.x, posePos(10).x, .02);
+            this.pos.y = lerp(this.pos.y, posePos(10).y, .02);
+        }
         ellipse(this.pos.x, this.pos.y, this.size, this.size);
     }
     isOn (div) {

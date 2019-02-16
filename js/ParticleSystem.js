@@ -5,6 +5,6 @@ class ParticleSystem {
     }
     show() {
         this.poseParticleSystem.draw();
-        this.networkSystem.draw(posePos(1))
+        this.networkSystem.draw()
     }
 }
