@@ -20,6 +20,7 @@ function draw() {
     if (ml5Loaded) {
         init ? sketch.init() : sketch.menu();
     } else {
+        clear();
         displayLoading();
     }
 }

@@ -32,13 +32,17 @@ class Point {
             max: 75
         }
         this.op = 2
+        this.col = { r: 0, b :0 }
     }
     draw() {
-        this.x = map(noise(this.xOff), 0, 1, -width * 2, width * 2);
-        this.y = map(noise(this.yOff), 0, 1, -height * 2, height * 2);
+        this.x = map(noise(this.xOff), 0, 1, -width, width);
+        this.y = map(noise(this.yOff), 0, 1, -height, height);
+        const relPos = dist(this.x, this.y, 0, 0);
+        this.col.r = map(relPos, -width, width, 255, 0);
+        this.col.b = map(relPos, -width, width, 0, 255);
         noStroke();
-        fill(255);
-        ellipse(this.x, this.y, 1 + mp3.smoothVol, 1 + mp3.smoothVol);
+        fill(this.col.r, 50, this.col.b);
+        ellipse(this.x, this.y, 20 + mp3.smoothVol, 20 + mp3.smoothVol);
         this.xOff += mp3.smoothVol / 500;
         this.yOff += mp3.smoothVol / 500;
     }
@@ -46,11 +50,11 @@ class Point {
         if (Math.abs(dist(this.x, this.y, other.x, other.y)) < 250) {
             noFill();
             if (blink) {
-                this.op = lerp(this.op, 20, 0.5);
+                this.op = lerp(this.op, 10, 0.5);
             } else {
                 this.op = lerp(this.op, 2, 0.01);
             }
-            stroke(255, this.op);
+            stroke(this.col.r, 50, this.col.b, this.op);
             line(this.x, this.y, other.x, other.y);
         }
     }
