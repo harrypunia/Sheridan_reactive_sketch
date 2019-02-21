@@ -26,7 +26,7 @@ class Sketch {
             translate(-width / 4 - (mp3.smoothVol * width / 20), -height / 4 - (mp3.smoothVol * height / 20), 1);
             scale(.5 + mp3.smoothVol / 10, .5 + mp3.smoothVol / 10, 1);
             noFill();
-            stroke(180, 50, 200);
+            stroke(100, 10, 80);
             rect(0, 0, width, height);
         }
         this.particleSystem.show();
