@@ -27,29 +27,23 @@ class Point {
         this.yOff = yOff;
         this.range = { min: 50, max: 75 }
         this.op = 2
-        this.col = {
-            r: 0,
-            b: 0
-        }
+        this.col = {r: 0, b: 0, g: 0}
     }
     draw() {
-        this.x = map(noise(this.xOff), 0, 1, -width * 2, width * 2);
-        this.y = map(noise(this.yOff), 0, 1, -height * 2, height * 2);
-        const relPos = dist(this.x, this.y, 0, 0);
-        this.col.r = map(relPos, -width * 2, width * 2, 100, 0);
-        this.col.b = map(relPos, -width * 2, width * 2, 0, 100);
+        this.getPos();
         noStroke();
-        fill(this.col.r, 50, this.col.b);
-        ellipse(this.x, this.y, 20 + mp3.smoothVol, 20 + mp3.smoothVol);
-        this.xOff += mp3.smoothVol / 250;
-        this.yOff += mp3.smoothVol / 250;
+        fill(this.col.r + mp3.smoothVol * 50, this.col.g + mp3.smoothVol * 50, this.col.b + mp3.smoothVol * 50);
+        ellipse(this.x, this.y, 10 + mp3.smoothVol, 10 + mp3.smoothVol);
+        this.xOff += mp3.smoothVol / 300;
+        this.yOff += mp3.smoothVol / 300;
     }
     getPos() {
         this.x = map(noise(this.xOff), 0, 1, -width * 2, width * 2);
         this.y = map(noise(this.yOff), 0, 1, -height * 2, height * 2);
         const relPos = dist(this.x, this.y, 0, 0);
-        this.col.r = map(relPos, -width, width, 255, 0);
-        this.col.b = map(relPos, -width, width, 0, 255);
+        this.col.r = map(relPos, -width * 2, width * 2, 100, 0);
+        this.col.g = map(relPos, -width * 2, width * 2, 100, 0);
+        this.col.b = map(relPos, -width * 2, width * 2, 0, 100);
     }
     connectTo(other, blink) {
         const gap = Math.abs(dist(this.x, this.y, other.x, other.y));
