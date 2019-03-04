@@ -27,27 +27,28 @@ class Point {
         this.y;
         this.xOff = xOff;
         this.yOff = yOff;
-        this.range = {
-            min: 50,
-            max: 75
-        }
+        this.range = { min: 50, max: 75 }
         this.op = 2
         this.col = { r: 0, b :0 }
     }
     draw() {
-        this.x = map(noise(this.xOff), 0, 1, -width, width);
-        this.y = map(noise(this.yOff), 0, 1, -height, height);
-        const relPos = dist(this.x, this.y, 0, 0);
-        this.col.r = map(relPos, -width, width, 255, 0);
-        this.col.b = map(relPos, -width, width, 0, 255);
+        this.getPos();
         noStroke();
         fill(this.col.r, 50, this.col.b);
         ellipse(this.x, this.y, 20 + mp3.smoothVol, 20 + mp3.smoothVol);
         this.xOff += mp3.smoothVol / 500;
         this.yOff += mp3.smoothVol / 500;
     }
+    getPos() {
+        this.x = map(noise(this.xOff), 0, 1, -width * 2, width * 2);
+        this.y = map(noise(this.yOff), 0, 1, -height * 2, height * 2);
+        const relPos = dist(this.x, this.y, 0, 0);
+        this.col.r = map(relPos, -width, width, 255, 0);
+        this.col.b = map(relPos, -width, width, 0, 255);
+    }
     connectTo(other, blink) {
-        if (Math.abs(dist(this.x, this.y, other.x, other.y)) < 250) {
+        const gap = Math.abs(dist(this.x, this.y, other.x, other.y));
+        if (gap < 350 && gap > 250) {
             noFill();
             if (blink) {
                 this.op = lerp(this.op, 10, 0.5);
