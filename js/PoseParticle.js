@@ -6,7 +6,7 @@ class PoseParticle {
     }
     show(pos, z) {
         noStroke();
-        fill(200, 50, 180);
+        fill(100, 10, 80);
         this.x = lerp(this.x, pos.x, 0.05);
         this.y = lerp(this.y, pos.y, 0.05);
         this.z = map(z, 0, width, 2, 5);
@@ -14,7 +14,7 @@ class PoseParticle {
     }
     connectTo(other) {
         noFill();
-        stroke(200, 50, 180, 20);
+        stroke(100, 10, 80);
         line(this.x, this.y, other.x, other.y);
     }
 }
