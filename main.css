@@ -8,6 +8,10 @@ html {
     background: black;
 }
 
+distort-text {
+    display:block;
+}
+
 #intro {
     position: absolute;
     left: 50vw;
@@ -49,39 +53,42 @@ html {
     0% {
         height: 34px;
         margin-top: 50px;
-        transform: translate(-50%, -50%) rotate(0deg);
+        transform: translate(-50%, -50%) rotate(0deg)
     }
     10% {
         height: 25px;
         margin-top: 59px;
-        transform: translate(-50%, -50%) rotate(0deg);
+        transform: translate(-50%, -50%) rotate(0deg)
     }
     30% {
         height: 34px;
         margin: 0;
-        transform: translate(-50%, -50%) rotate(180deg);
+        transform: translate(-50%, -50%) rotate(180deg)
     }
     50% {
         height: 25px;
         margin-top: 59px;
-        transform: translate(-50%, -50%) rotate(360deg);
+        transform: translate(-50%, -50%) rotate(360deg)
     }
     60% {
         height: 34px;
         margin-top: 50px;
-        transform: translate(-50%, -50%) rotate(360deg);
+        transform: translate(-50%, -50%) rotate(360deg)
     }
     100% {
         margin-top: 50px;
-        transform: translate(-50%, -50%) rotate(360deg);
+        transform: translate(-50%, -50%) rotate(360deg)
     }
 }
 
 #desc {
     position: absolute;
     left: 50vw;
-    top: 50vh;
+    top: 60vh;
     transform: translate(-50%, -50%);
+    color: white;
+    font-size: 42px;
+    font-family: sans-serif;
 }
 
 #loading {
