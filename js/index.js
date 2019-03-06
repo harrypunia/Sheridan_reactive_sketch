@@ -4,3 +4,4 @@ const loading = document.getElementById('loading');
 const introSound = new Audio('assets/intro.mp3');
 const performance = document.getElementById('performance');
 const logo = document.getElementById('logo');
+const desc = document.getElementById('desc');

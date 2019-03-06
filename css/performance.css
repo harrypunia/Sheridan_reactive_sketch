@@ -1,0 +1,10 @@
+#performance {
+    position: absolute;
+    right: 20px;
+    bottom: 20px;
+    width: 10px;
+    height: 10px;
+    background: black;
+    border-radius: 50%;
+    transition: background .2s ease-in-out;
+}

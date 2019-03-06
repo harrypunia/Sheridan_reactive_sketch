@@ -8,9 +8,10 @@ const pointGap = (n1, n2) => dist(posePos(n1).x, posePos(n1).y, posePos(n2).x, p
 const poseLoaded = () => {
     loading.style.width = '100vw';
     setTimeout(() => {
-        loading.classList.add('hide');
+        loading.style.display = 'none';
         intro.classList.add('in')
         ml5Loaded = true;
+        desc.setAttribite('dir', 'out');
         introSound.play();
     }, 1000);
     console.log('ml5 has been loaded');

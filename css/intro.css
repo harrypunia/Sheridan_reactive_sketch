@@ -1,0 +1,26 @@
+#intro {
+    position: absolute;
+    left: 50vw;
+    top: 50vh;
+    transform: translate(-50%, -50%);
+    color: rgb(30, 87, 152);
+    font-size: 54px;
+    text-align: center;
+    font-family: 'cinzel-decorative';
+    opacity: 0;
+    text-shadow: 0 0 80px rgba(30, 87, 152, 0.8);
+}
+
+.in {
+    animation: fade-in 2s cubic-bezier(.91, .01, 1, 1);
+    animation-fill-mode: forwards
+}
+
+@keyframes fade-in {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
