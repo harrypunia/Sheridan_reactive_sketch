@@ -50,7 +50,8 @@
     bottom: 50px;
     transform: translate(-50%, 50%);
     width: 20px;
-    background: url('../assets/img/upload.svg');
+    background-color: rgb(30, 87, 152);
+    background-image: url('../assets/img/upload.svg');
     padding: 15px;
     border-radius: 50%;
     left: 90%;

@@ -4,6 +4,7 @@ let sketch;
 let ml5Loaded = false;
 let songsLoaded;
 let activeSong = 0;
+let dropFiles;
 
 function preload() {
     for (let i = 0; i < 3; i++) {
@@ -14,6 +15,7 @@ function preload() {
 function setup() {
     createCanvas(window.innerWidth, window.innerHeight, WEBGL);
     songList.every((song) => song.isLoaded()) ? (sketch = new Sketch(), console.log('loading successful')) : console.log('unable to load songs');
+    lookForUpload();
 }
 
 function draw() {

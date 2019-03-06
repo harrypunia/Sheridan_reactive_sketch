@@ -53,4 +53,10 @@ class Sketch {
         }
         selectSong(this.navigator);
     }
+    displayActiveSong(num) {
+        for (let i = 0; i < songs.length; i++) {
+            songs[i].removeAttribute('active');
+        }
+        songs[num].setAttribute('active', '');
+    }
 }
