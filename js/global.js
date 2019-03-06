@@ -11,8 +11,9 @@ const poseLoaded = () => {
         loading.style.display = 'none';
         intro.classList.add('in')
         ml5Loaded = true;
-        desc.setAttribite('dir', 'out');
+        desc.setAttribute('dir', 'out');
         introSound.play();
+        songMenu.setAttribute('in', '');
     }, 1000);
     console.log('ml5 has been loaded');
 }

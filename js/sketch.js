@@ -53,6 +53,20 @@ class Sketch {
             this.navigator.counter.main = 0;
             this.navigator.reset();
         }
+        this.selectSong();
+    }
+    selectSong() {
+        this.navigator.isOn(songs[0]) ? this.loadSong(1) : this.navigator.isOn(songs[1]) ? this.loadSong(1) : this.navigator.isOn(songs[2]) ? this.loadSong(2) : 0;
+    }
+    loadSong(num) {
+        activeSong = num;
+        this.displayActiveSong(num);
+    }
+    displayActiveSong(num) {
+        for(let i = 0; i < songs.length; i++) {
+            songs[i].removeAttribute('active');
+        }
+        songs[num].setAttribute('active', '');
     }
     displayPerformance() {
         if(frameRate() < 30) {

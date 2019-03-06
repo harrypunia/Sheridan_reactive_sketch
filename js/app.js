@@ -1,18 +1,19 @@
 let init = false;
-let songs = [];
+let songList = [];
 let sketch;
 let ml5Loaded = false;
 let songsLoaded;
+let activeSong = 0;
 
 function preload() {
     for (let i = 0; i < 3; i++) {
-        songs[i] = loadSound('assets/' + i + '.mp3');
+        songList[i] = loadSound('assets/' + i + '.mp3');
     }
 }
 
 function setup() {
     createCanvas(window.innerWidth, window.innerHeight, WEBGL);
-    songs.every((song) => song.isLoaded()) ? (sketch = new Sketch(), console.log('loading successful')) : console.log('unable to load songs');
+    songList.every((song) => song.isLoaded()) ? (sketch = new Sketch(), console.log('loading successful')) : console.log('unable to load songs');
 }
 
 function draw() {
@@ -32,15 +33,16 @@ function windowResized() {
 
 const initSketch = () => {
     init = true;
-    songs[0].play();
-    mp3 = new MP3(songs[0]);
+    songList[activeSong].play();
+    mp3 = new MP3(songList[activeSong]);
     intro.style.display = 'none';
+    songMenu.removeAttribute('in');
 }
 
 const displayLoading = () => {
     if (songsLoaded != true) {
-        let manyLoaded = songs.filter(each => each.isLoaded()).length;
+        let manyLoaded = songList.filter(each => each.isLoaded()).length;
         loading.style.width = manyLoaded / songs.length * 75 + 'vw';
-        manyLoaded >= songs.length ? (songsLoaded = true, console.log('songs have been loaded')) : 0;
+        manyLoaded >= songList.length ? (songsLoaded = true, console.log('songs have been loaded')) : 0;
     }
 }
