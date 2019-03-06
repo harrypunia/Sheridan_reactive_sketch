@@ -1,3 +1,5 @@
+//THIS CODE WAS WRITTEN BY ME IN DECEMBER 2018.
+
 const toggleDistortedText = () => {
     let test = document.getElementsByTagName('distort-text');
     for (let i = 0; i < test.length; i++) {

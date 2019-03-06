@@ -30,8 +30,7 @@ class PoseParticleSystem {
         }
     }
     connectCorners() {
-        noFill();
-        stroke(100, 10, 80);
+        noFillStroke(100, 10, 80);
         this.drawLine(0, 0, 1);
         this.drawLine(width, 0, 1);
         this.drawLine(0, 0, 2);

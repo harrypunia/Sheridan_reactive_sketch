@@ -15,23 +15,21 @@ class Sketch {
         this.navigator = new Navigator();
     }
     init() {
-        this.displayPerformance();
+        displayPerformance();
         mp3.updateVol();
         push();
         if (points != undefined && points.length > 0) {
-            this.getCnvRot();
+            getCnvRot(this.rot);
             translate(-width / 4 - (mp3.smoothVol * width / 20), -height / 4 - (mp3.smoothVol * height / 20), 1);
             scale(.5 + mp3.smoothVol / 10, .5 + mp3.smoothVol / 10, 1);
-            noFill();
-            stroke(100, 10, 80);
+            noFillStroke(100, 10, 80);
             rect(0, 0, width, height);
         }
         this.particleSystem.show();
         push();
     }
     menu() {
-        noFill();
-        stroke(80, 47, 152);
+        noFillStroke(80, 47, 152);
         push();
         translate(-width / 2, -height / 2);
         if (points != undefined && points.length > 0) {
@@ -53,44 +51,6 @@ class Sketch {
             this.navigator.counter.main = 0;
             this.navigator.reset();
         }
-        this.selectSong();
-    }
-    selectSong() {
-        this.navigator.isOn(songs[0]) ? this.loadSong(1) : this.navigator.isOn(songs[1]) ? this.loadSong(1) : this.navigator.isOn(songs[2]) ? this.loadSong(2) : 0;
-    }
-    loadSong(num) {
-        activeSong = num;
-        this.displayActiveSong(num);
-    }
-    displayActiveSong(num) {
-        for(let i = 0; i < songs.length; i++) {
-            songs[i].removeAttribute('active');
-        }
-        songs[num].setAttribute('active', '');
-    }
-    displayPerformance() {
-        if(frameRate() < 30) {
-            performance.style.background = 'red';
-        } else {
-            performance.style.background = 'black';
-        }
-    }
-    getCnvRot() {
-        this.getRotY();
-        this.getRotZ();
-        rotateY(this.rot.y);
-        rotateZ(this.rot.z);
-    }
-    getRotY() {
-        const maxDist = pointGap(4, 3) / 2;
-        let invert = 1;
-        let chosenSide = 0.0;
-        pointGap(0, 3) < pointGap(0, 4) ? (chosenSide = pointGap(0, 3), invert = -1) : chosenSide = pointGap(0, 4);
-        this.rot.y = lerp(this.rot.y, map(chosenSide, 0, maxDist, invert * .2, 0), 0.05);
-    }
-    getRotZ() {
-        const zAngle = posePos(3).y - posePos(4).y;
-        const earDist = pointGap(0, 4);
-        this.rot.z = lerp(this.rot.z, map(zAngle, -earDist, earDist, .2, -.2), 0.05);
+        selectSong(this.navigator);
     }
 }

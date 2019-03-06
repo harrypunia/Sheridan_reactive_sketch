@@ -6,8 +6,7 @@ class NetworkSystem {
         }
     }
     draw() {
-        noFill();
-        stroke(255);
+        noFillStroke(255);
         translate(width / 2, height / 2, 1);
         for (let i in this.points) {
             for (let j in this.points) {
@@ -31,8 +30,7 @@ class Point {
     }
     draw() {
         this.getPos();
-        noStroke();
-        fill(this.col.r + mp3.smoothVol * 50, this.col.g + mp3.smoothVol * 50, this.col.b + mp3.smoothVol * 50);
+        noStrokeFill(this.col.r + mp3.smoothVol * 50, this.col.g + mp3.smoothVol * 50, this.col.b + mp3.smoothVol * 50);
         ellipse(this.x, this.y, 10 + mp3.smoothVol, 10 + mp3.smoothVol);
         this.xOff += mp3.smoothVol / 300;
         this.yOff += mp3.smoothVol / 300;
@@ -48,8 +46,7 @@ class Point {
     connectTo(other, blink) {
         const gap = Math.abs(dist(this.x, this.y, other.x, other.y));
         if (gap < 350 && gap > 250) {
-            noFill();
-            stroke(this.col.r + mp3.smoothVol * 100, 10, this.col.b + mp3.smoothVol * 100);
+            noFillStroke(this.col.r + mp3.smoothVol * 100, 10, this.col.b + mp3.smoothVol * 100);
             line(this.x, this.y, other.x, other.y);
         }
     }

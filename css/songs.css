@@ -21,16 +21,6 @@
     text-align: center;
 }
 
-.songItem {
-    position: absolute;
-    bottom: 50px;
-    transform: translate(-50%, 50%);
-    color: white;
-    font-size: 24px;
-    color: rgb(30, 87, 152);
-    text-align: center;
-}
-
 .songs[active] {
     background: rgb(30, 87, 152);
     padding: 10px 20px;
@@ -56,8 +46,11 @@
 }
 
 .upload {
+    position: absolute;
+    bottom: 50px;
+    transform: translate(-50%, 50%);
     width: 20px;
-    background: rgb(30, 87, 152);
+    background: url('../assets/img/upload.svg');
     padding: 15px;
     border-radius: 50%;
     left: 90%;
