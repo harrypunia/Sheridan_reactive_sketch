@@ -11,10 +11,7 @@ class Sketch {
         capture.size(capture.width * 4, capture.height * 4);
         ml5.poseNet(capture, poseLoaded).on('pose', (poses) => points = poses);
         this.particleSystem = new ParticleSystem(points);
-        this.rot = {
-            y: 0,
-            z: 0
-        }
+        this.rot = { y: 0, z: 0 }
         this.navigator = new Navigator();
     }
     init() {
@@ -34,7 +31,7 @@ class Sketch {
     }
     menu() {
         noFill();
-        stroke(255);
+        stroke(80, 47, 152);
         push();
         translate(-width / 2, -height / 2);
         if (points != undefined && points.length > 0) {

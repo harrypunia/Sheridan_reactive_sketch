@@ -18,6 +18,7 @@ function setup() {
 function draw() {
     background(0);
     if (ml5Loaded) {
+        logo.style.display = 'none';
         init ? sketch.init() : sketch.menu();
     } else {
         clear();

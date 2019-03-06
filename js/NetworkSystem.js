@@ -49,7 +49,7 @@ class Point {
         const gap = Math.abs(dist(this.x, this.y, other.x, other.y));
         if (gap < 350 && gap > 250) {
             noFill();
-            stroke(this.col.r, 10, this.col.b);
+            stroke(this.col.r + mp3.smoothVol * 100, 10, this.col.b + mp3.smoothVol * 100);
             line(this.x, this.y, other.x, other.y);
         }
     }
