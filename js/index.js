@@ -1,3 +1,6 @@
+/* All DOM elements needed for this project
+   Audio assets also loaded in JS
+*/
 const intro = document.getElementById('intro');
 const introText = intro.getElementsByTagName('p')[0];
 const loading = document.getElementById('loading');

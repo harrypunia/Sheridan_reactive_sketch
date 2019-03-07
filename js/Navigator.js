@@ -1,3 +1,9 @@
+/*Navigator class is the control for navigation
+  the method navigate() displays the ellipse and allows for mouse navigation
+  isOn() method returns true/false to whether the navigator is on a the div passed as a parameter
+  highlight() and reset() method changes visuals of the ellipse to specify clickable items
+*/
+
 class Navigator {
     constructor() {
         this.pos = {x: width, y: height};

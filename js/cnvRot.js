@@ -1,6 +1,7 @@
 /* getCnvRot gets canvas rotations using posePoints
    rot object is passes from sketch which is used to manipulate rotateY and Z
-   Note: [x axis is switched with y in WEGBL by default]*/
+   Note: [x axis is switched with y in WEGBL by default]
+*/
 
 const getCnvRot = (rot) => {
     getRotY(rot);

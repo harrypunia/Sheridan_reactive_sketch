@@ -19,6 +19,18 @@
     font-size: 24px;
     color: rgb(30, 87, 152);
     text-align: center;
+    cursor: pointer;
+}
+
+.songItem {
+    position: absolute;
+    bottom: 50px;
+    transform: translate(-50%, 50%);
+    color: white;
+    font-size: 24px;
+    color: rgb(30, 87, 152);
+    text-align: center;
+    cursor: default;
 }
 
 .songs[active] {

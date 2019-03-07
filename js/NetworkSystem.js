@@ -1,7 +1,11 @@
+/* This is the complex grid structure in the back, that responds to music
+   NetworkSystem uses Point class to draw points and connect them to each other.
+*/
+
 class NetworkSystem {
     constructor() {
         this.points = [];
-        for (let i = 0; i < 80; i++) {
+        for (let i = 0; i < 100; i++) {
             this.points[i] = new Point(random(10), random(10));
         }
     }
@@ -45,8 +49,8 @@ class Point {
     }
     connectTo(other, blink) {
         const gap = Math.abs(dist(this.x, this.y, other.x, other.y));
-        if (gap < 350 && gap > 250) {
-            noFillStroke(this.col.r + mp3.smoothVol * 100, 10, this.col.b + mp3.smoothVol * 100);
+        if (gap < 300 && gap > 200) {
+            noFillStroke(this.col.r, 10, this.col.b);
             line(this.x, this.y, other.x, other.y);
         }
     }

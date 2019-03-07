@@ -9,6 +9,7 @@
     font-family: 'cinzel-decorative';
     opacity: 0;
     text-shadow: 0 0 80px rgba(30, 87, 152, 0.8);
+    cursor: pointer;
 }
 
 .in {
@@ -16,11 +17,4 @@
     animation-fill-mode: forwards
 }
 
-@keyframes fade-in {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
-}
+@keyframes fade-in { from {opacity: 0} to {opacity: 1} }
