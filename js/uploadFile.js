@@ -12,12 +12,6 @@ const resetHighlight = () => dropFiles.style("background-color", "rgb(30, 87, 15
 
 const highlight = () => dropFiles.style("background-color", "rgb(221, 57, 57)")
 
-const loadFile = file => {
-    console.log(file.type);
-    songList.push(loadSound(file, iniSketchWithUserSong));
-}
+const loadFile = file => file.type === "audio" ? songList.push(loadSound(file, iniSketchWithUserSong)) : alert("invalid file type: Please drop an audio files.");
 
-const iniSketchWithUserSong = () => {
-    activeSong = songList.length - 1;
-    initSketch();
-}
+const iniSketchWithUserSong = () => (activeSong = songList.length - 1, initSketch())
