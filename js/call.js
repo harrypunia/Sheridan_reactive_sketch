@@ -10,3 +10,4 @@ const logo = document.getElementById('logo');
 const desc = document.getElementById('desc');
 const songs = document.getElementsByClassName('songs');
 const songMenu = document.getElementsByClassName('songMenu')[0];
+const upload = document.getElementById('upload');

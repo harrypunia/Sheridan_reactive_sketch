@@ -1,0 +1,13 @@
+.upload {
+    position: absolute;
+    bottom: 50px;
+    transform: translate(-50%, 50%);
+    padding: 10px 20px;
+    border-radius: 5px;
+    right: 0;
+    transition: padding .2s ease-in-out;
+    border: 1px solid rgb(30, 87, 152);
+    border-style: dashed;
+    color: rgb(30, 87, 152);
+    text-align: center;
+}

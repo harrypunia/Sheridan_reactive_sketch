@@ -7,9 +7,7 @@
     transition: transform .8s ease-out;
 }
 
-.songMenu[in] {
-    transform: translateY(0);
-}
+.songMenu[in] {transform: translateY(0)}
 
 .songs {
     position: absolute;
@@ -40,38 +38,13 @@
     color: white;
 }
 
-.song1 {
-    left: 30%;
-}
-
-.song2 {
-    left: 50%;
-}
-
-.song3 {
-    left: 70%;
-}
-
 .songsDesc {
     left: 10%;
     margin: 0;
 }
 
-.upload {
-    position: absolute;
-    bottom: 50px;
-    transform: translate(-50%, 50%);
-    width: 20px;
-    background-color: rgb(30, 87, 152);
-    background-image: url('../assets/img/upload.svg');
-    padding: 15px;
-    border-radius: 50%;
-    left: 90%;
-    transition: padding .2s ease-in-out;
-    cursor: pointer;
-}
+.song1 {left: 30%}
 
-.upload:hover {
-    padding: 20px;
-    transition: padding .2s ease-in-out;
-}
+.song2 {left: 50%}
+
+.song3 {left: 70%}

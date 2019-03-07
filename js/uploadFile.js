@@ -8,9 +8,9 @@ function lookForUpload() {
     dropFiles.drop(loadFile, resetHighlight); //loads file on to local browser
 }
 
-const resetHighlight = () => dropFiles.style("background-color", "rgb(30, 87, 152)")
+const resetHighlight = () => upload.style.background = 'none'
 
-const highlight = () => dropFiles.style("background-color", "rgb(221, 57, 57)")
+const highlight = () => upload.style.background = "rgb(221, 57, 57)"
 
 const loadFile = file => file.type === "audio" ? songList.push(loadSound(file, iniSketchWithUserSong)) : alert("invalid file type: Please drop an audio files.");
 
