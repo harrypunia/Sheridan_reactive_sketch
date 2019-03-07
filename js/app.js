@@ -6,7 +6,6 @@ let sketch;
 let ml5Loaded = false;
 let songsLoaded;
 let activeSong = 0;
-let dropFiles;
 
 function preload() {
     for (let i = 0; i < 3; i++) {songList[i] = loadSound('assets/' + i + '.mp3')} //load all songs

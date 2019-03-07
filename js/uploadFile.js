@@ -1,8 +1,7 @@
 /*Under construction*/
-
 function lookForUpload() {
     //p5.dom.js
-    dropFiles = select("#upload");
+    const dropFiles = select("#upload");
     dropFiles.dragOver(highlight);
     dropFiles.dragLeave(resetHighlight);
     dropFiles.drop(loadFile, resetHighlight); //loads file on to local browser
