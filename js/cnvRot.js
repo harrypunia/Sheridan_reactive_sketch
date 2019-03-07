@@ -17,7 +17,7 @@ const getRotY = (rot) => {
     rot.y = lerp(rot.y, map(chosenSide, 0, maxDist, invert * .2, 0), 0.05);
 }
 const getRotZ = (rot) => {
-    const zAngle = posePos(3).y - posePos(4).y;
-    const earDist = pointGap(0, 4); //using ear distance to calculate the angle
+    const zAngle = posePos(3).y - posePos(4).y; //difference in y pos of ear points, to get angle
+    const earDist = pointGap(3, 4);
     rot.z = lerp(rot.z, map(zAngle, -earDist, earDist, .2, -.2), 0.05);
 }

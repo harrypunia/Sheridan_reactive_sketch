@@ -5,9 +5,7 @@
 class NetworkSystem {
     constructor() {
         this.points = [];
-        for (let i = 0; i < 100; i++) {
-            this.points[i] = new Point(random(10), random(10));
-        }
+        for (let i = 0; i < 100; i++) {this.points[i] = new Point(random(1000), random(1000));}
     }
     draw() {
         noFillStroke(255);
