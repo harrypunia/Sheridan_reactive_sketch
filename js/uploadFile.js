@@ -4,7 +4,7 @@ function lookForUpload() {
     const dropFiles = select("#upload");
     dropFiles.dragOver(highlight);
     dropFiles.dragLeave(resetHighlight);
-    dropFiles.drop(loadFile, resetHighlight); //loads file on to local browser
+    dropFiles.drop(loadFile, highlight); //loads file on to local browser
 }
 
 const resetHighlight = () => upload.style.background = 'none'

@@ -1,18 +1,14 @@
 .upload {
     position: absolute;
     bottom: 50px;
-    transform: translate(-50%, 50%);
+    transform: translate(50%, 50%);
     padding: 10px 20px;
     border-radius: 5px;
-    right: 0;
-    transition: padding .2s ease-in-out;
+    right: 10%;
+    transition: background .2s ease-in-out;
     border: 1px solid rgb(30, 87, 152);
     border-style: dashed;
     text-align: center;
     color: rgb(30, 87, 152);
     cursor: copy;
-}
-
-.upload:hover {
-    padding: 12px 22px;
 }
