@@ -8,6 +8,7 @@ class Navigator {
         }
     }
     navigate() {
+        //Allows mouse navigation
         if(mouseIsPressed) {
             this.pos.x = mouseX;
             this.pos.y = mouseY;
@@ -18,19 +19,19 @@ class Navigator {
         ellipse(this.pos.x, this.pos.y, this.size, this.size);
     }
     isOn (div) {
-        const {x, y, w, h} = this.getElementPos(div);
-        return (this.pos.x - x > 0 && this.pos.x - x < w  && this.pos.y - y > 0 && this.pos.y - y < h);
+        const {x, y, w, h} = this.getElementPos(div); //Object deconstruction
+        return (this.pos.x - x > 0 && this.pos.x - x < w  && this.pos.y - y > 0 && this.pos.y - y < h);//returns true or false if ellipse is on div
     }
     highlight() {
-        this.size = lerp(this.size, 60, 0.01);
+        this.size = lerp(this.size, 60, 0.01);//changes color of ellipse
     }
     reset () {
-        this.size = lerp(this.size, 20, 0.1);
+        this.size = lerp(this.size, 20, 0.1);//changes color of ellipse
     }
     getElementPos(div) {
         const rect = div.getBoundingClientRect();
         const scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
         const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-        return { x: rect.left + scrollLeft, y: rect.top + scrollTop, w: div.offsetWidth, h: div.offsetHeight }
+        return { x: rect.left + scrollLeft, y: rect.top + scrollTop, w: div.offsetWidth, h: div.offsetHeight } //returns x, y, w, h
     }
 }

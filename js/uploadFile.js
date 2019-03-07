@@ -1,8 +1,9 @@
 function lookForUpload() {
+    //p5.dom.js
     dropFiles = select("#upload");
     dropFiles.dragOver(highlight);
     dropFiles.dragLeave(resetHighlight);
-    dropFiles.drop(loadFile, resetHighlight);
+    dropFiles.drop(loadFile, resetHighlight); //loads file on to local browser
 }
 
 function resetHighlight() {
@@ -21,5 +22,5 @@ function loadFile(file) {
     while(songList[songList.length - 1].isLoaded() == false) {
         console.log(songList[songList.length - 1].isLoaded());
     }
-    initSketch();
+    initSketch(); //starts sketch
 }

@@ -8,6 +8,8 @@ const pointGap = (n1, n2) => dist(posePos(n1).x, posePos(n1).y, posePos(n2).x, p
 const poseLoaded = () => {
     loading.style.width = '100vw';
     setTimeout(() => {
+        //hide all loading visuals and display menu items
+        logo.style.display = 'none';
         loading.style.display = 'none';
         intro.classList.add('in')
         ml5Loaded = true;

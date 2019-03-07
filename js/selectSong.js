@@ -1,6 +1,6 @@
 const selectSong = (navigator) => {
     if (navigator.isOn(songs[0])) {
-        loadSong(1);
+        loadSong(0);
     } else if (navigator.isOn(songs[1])) {
         loadSong(1);
     } else if (navigator.isOn(songs[2])) {

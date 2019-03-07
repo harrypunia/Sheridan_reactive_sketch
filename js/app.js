@@ -1,3 +1,5 @@
+/*Using Classes to keep the app simple and modulated*/
+
 let init = false;
 let songList = [];
 let sketch;
@@ -7,21 +9,18 @@ let activeSong = 0;
 let dropFiles;
 
 function preload() {
-    for (let i = 0; i < 3; i++) {
-        songList[i] = loadSound('assets/' + i + '.mp3');
-    }
+    for (let i = 0; i < 3; i++) {songList[i] = loadSound('assets/' + i + '.mp3')} //load all songs
 }
 
 function setup() {
-    createCanvas(window.innerWidth, window.innerHeight, WEBGL);
+    createCanvas(window.innerWidth, window.innerHeight, WEBGL); //leverage WEBGL for 3d rotation
     songList.every((song) => song.isLoaded()) ? (sketch = new Sketch(), console.log('loading successful')) : console.log('unable to load songs');
-    lookForUpload();
+    lookForUpload();//looking for drop files in uploadFile.js
 }
 
 function draw() {
     background(0);
-    if (ml5Loaded) {
-        logo.style.display = 'none';
+    if (ml5Loaded) { //ML5 load callback
         init ? sketch.init() : sketch.menu();
     } else {
         clear();
