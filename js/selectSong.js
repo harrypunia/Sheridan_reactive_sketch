@@ -1,3 +1,7 @@
+/* Selects song using navigator.isOn() method
+   loadSong changes global variables
+*/
+
 const selectSong = (navigator) => {
     if (navigator.isOn(songs[0])) {
         loadSong(0);
