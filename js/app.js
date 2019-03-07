@@ -28,22 +28,12 @@ function draw() {
     }
 }
 
-function windowResized() {
-    resizeCanvas(window.innerWidth, window.innerHeight);
-}
+function windowResized() { resizeCanvas(window.innerWidth, window.innerHeight) }
 
-const initSketch = () => {
+const initSketch = () => { //Init sketch but setting init bool to true and loading the selected song
     init = true;
     songList[activeSong].play();
-    mp3 = new MP3(songList[activeSong]);
+    mp3 = new MP3(songList[activeSong]); //Created mp3 objected with the selected song
     intro.style.display = 'none';
     songMenu.removeAttribute('in');
-}
-
-const displayLoading = () => {
-    if (songsLoaded != true) {
-        let manyLoaded = songList.filter(each => each.isLoaded()).length;
-        loading.style.width = manyLoaded / songs.length * 75 + 'vw';
-        manyLoaded >= songList.length ? (songsLoaded = true, console.log('songs have been loaded')) : 0;
-    }
 }

@@ -5,12 +5,12 @@
 class NetworkSystem {
     constructor() {
         this.points = [];
-        for (let i = 0; i < 100; i++) {this.points[i] = new Point(random(1000), random(1000));}
+        for (let i = 0; i < 120; i++) {this.points[i] = new Point(random(1000), random(1000));}
     }
     draw() {
         noFillStroke(255);
-        translate(width / 2, height / 2, 1);
-        for (let i in this.points) {
+        translate(width / 2, height / 2, 1); //Note: [Not using push, pop; because this is inside one].
+        for (let i in this.points) { //nested for loops for connections
             for (let j in this.points) {
                 this.points[i].connectTo(this.points[j]);
             }
@@ -28,11 +28,11 @@ class Point {
         this.yOff = yOff;
         this.range = { min: 50, max: 75 }
         this.op = 2
-        this.col = {r: 0, b: 0, g: 0}
+        this.col = { r: 0, b: 0 }
     }
     draw() {
-        this.getPos();
-        noStrokeFill(this.col.r + mp3.smoothVol * 50, this.col.g + mp3.smoothVol * 50, this.col.b + mp3.smoothVol * 50);
+        this.getPos(); //gets positions and colors for each point
+        noStrokeFill(this.col.r, 20, this.col.b); //love this xD
         ellipse(this.x, this.y, 10 + mp3.smoothVol, 10 + mp3.smoothVol);
         this.xOff += mp3.smoothVol / 300;
         this.yOff += mp3.smoothVol / 300;
@@ -45,9 +45,9 @@ class Point {
         this.col.g = map(relPos, -width * 2, width * 2, 100, 0);
         this.col.b = map(relPos, -width * 2, width * 2, 0, 100);
     }
-    connectTo(other, blink) {
-        const gap = Math.abs(dist(this.x, this.y, other.x, other.y));
-        if (gap < 300 && gap > 200) {
+    connectTo(other, blink) { //connects to points
+        const gap = Math.abs(dist(this.x, this.y, other.x, other.y)); //get gap
+        if (gap < 200 && gap > 100) { //conditions to connect
             noFillStroke(this.col.r, 10, this.col.b);
             line(this.x, this.y, other.x, other.y);
         }

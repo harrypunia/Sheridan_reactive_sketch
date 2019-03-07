@@ -1,20 +1,26 @@
+/* This is the particle system for poseParticle
+   Draws the particle at each point of the pose
+   Math for lips is done manually as ml5 doesnt provide a lip point
+   connections to the corner of the box are done manually as well
+*/
+
 class PoseParticleSystem {
     constructor() {
         this.poseParticles = [];
-        for (let i = 0; i < 6; i++) {
-            this.poseParticles[i] = new PoseParticle(width / 2, height / 2);
-        }
+        for (let i = 0; i < 6; i++) { this.poseParticles[i] = new PoseParticle(width / 2, height / 2) }
     }
     draw() {
-        if (points != undefined && points.length > 0) {
-            this.connectCorners();
+        if (points != undefined && points.length > 0) { 
+            //fallback for when face is not detected to avoid crashing
+            this.connectCorners(); //manually connecting corners
             for (let i = 0; i < this.poseParticles.length - 1; i++) {
+                //Nesting to connect particles to each other
                 for (let j = 0; j < this.poseParticles.length - 1; j++) {
                     this.poseParticles[i].connectTo(this.poseParticles[j]);
                 }
-                const pos = {x: posePos(i).x, y: posePos(i).y}
+                const pos = {x: posePos(i).x, y: posePos(i).y} //global posePos func
                 const z = pointGap(1, 2);
-                this.poseParticles[i].show(pos, z);
+                this.poseParticles[i].show(pos, z); //manually drawing lip particle
             }
             const ears = {x1: posePos(1).x, y1: posePos(1).y, x2: posePos(2).x, y2:posePos(2).y}
             this.drawLip(ears);

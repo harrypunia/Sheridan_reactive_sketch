@@ -1,1 +1,2 @@
+//If frame rate drops below 30, display a red dot for warning/user info.
 const displayPerformance = () => frameRate() < 30 ? performance.style.background = 'red' : performance.style.background = 'black';
